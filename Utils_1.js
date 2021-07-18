@@ -7,7 +7,7 @@ function isPlainObject(obj){
 
     if(
         //Basic check
-        obj !== null &&
+        //obj !== null &&  //No es necesario
         //Separate from primitives
         typeof obj === 'object' &&
         //Separate build-in like Math
@@ -359,3 +359,30 @@ let table2XLS = (function(window){
     }
 
 })(window);
+
+
+/**
+ * Throw exceptions with line number
+ * from http://www.jomendez.com/2015/02/25/throw-exceptions-line-number-javascript/
+ * @param {String} txt 
+ * @param {String} act 
+ * @returns 
+ */
+function throwError(txt, act){
+    let error;
+    try { throw new Error(); }
+    catch(e){ error = e; }
+    if(!error) return;
+
+    error = error.stack.split('\n');
+    //removing the line that we force to generate the error (let error = new Error();) from the message
+    //aux.splice(0, 2);
+    error.splice(0, 3);
+    error = error.join('\n');
+    if(act)
+        error = '"' + txt + '" ' + act + '\n' + error;
+    else
+        error = txt + '\n' + error;
+    
+    throw error;
+}
