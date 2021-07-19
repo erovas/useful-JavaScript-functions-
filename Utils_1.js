@@ -386,3 +386,28 @@ function throwError(txt, act){
     
     throw error;
 }
+
+
+/**
+ * Check if css selector has a correct syntax
+ * @param {String} selector 
+ * @returns 
+ */
+function _checkCSSSelector(selector){
+    try { document.createDocumentFragment().querySelector(selector) } catch(e) { return false }
+    return true
+}
+
+
+/**
+ * Similar to Object.assing, but more powerful
+ * @param {Object} target 
+ * @param {Object} source 
+ * @returns 
+ */
+function powerful_object_assing(target, source){
+    Object.getOwnPropertyNames(source).forEach(function(name){
+        Object.defineProperty(target, name, Object.getOwnPropertyDescriptor(source, name));
+    });
+    return target;
+}
