@@ -411,3 +411,13 @@ function powerful_object_assing(target, source){
     });
     return target;
 }
+
+
+/**
+ * Freeze the browser
+ * @param {Number} time in milliseconds
+ */
+function FreezeBrowser(time){
+    let force_wait = Date.now() + time;
+    while(Date.now() < force_wait){}
+}
