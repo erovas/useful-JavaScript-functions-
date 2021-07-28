@@ -421,3 +421,23 @@ function FreezeBrowser(time){
     let force_wait = Date.now() + time;
     while(Date.now() < force_wait){}
 }
+
+
+function openFullscreen() {
+    var elem = document.documentElement; //can be a DIV or whatever DOM element
+    if (elem.requestFullscreen)
+        elem.requestFullscreen();
+    else if (elem.webkitRequestFullscreen) // Safari
+        elem.webkitRequestFullscreen();
+    else if (elem.msRequestFullscreen) // IE11 
+        elem.msRequestFullscreen();
+}
+
+function closeFullscreen() {
+    if (document.exitFullscreen)
+        document.exitFullscreen();
+    else if (document.webkitExitFullscreen) // Safari
+        document.webkitExitFullscreen();
+    else if (document.msExitFullscreen) // IE11 
+        document.msExitFullscreen();
+}
