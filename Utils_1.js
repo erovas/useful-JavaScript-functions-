@@ -441,3 +441,32 @@ function closeFullscreen() {
     else if (document.msExitFullscreen) // IE11 
         document.msExitFullscreen();
 }
+
+
+function clamp(input, min, max){
+    return input > max? max : (input < min? min : input)
+}
+
+// Menos eficiente en ejecucion y en tamaño de caracteres minificado
+function clamp2(input, min, max){
+    return Math.min(Math.max(input, min), max)
+}
+
+//La misma funcion de map() de arduino
+function map(input, inMin, inMax, outMin, outMax){
+    return (input > inMax? inMax : (input < inMin? inMin : input) - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+}
+
+/*
+    var t0 = performance.now()
+
+    console.log(clamp(123, 0, 200))
+
+    var t1 = performance.now()
+    console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
+
+    var t0 = performance.now()
+    console.log(clamp2(123, 0, 200))
+    var t1 = performance.now()
+    console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
+    */
